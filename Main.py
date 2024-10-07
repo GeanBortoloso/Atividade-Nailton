@@ -1,5 +1,6 @@
-from Operadores import soma, subtracao, multiplicacao, divisao
-from Operadores.Avancados import quadrado, cubo
+from Matematica import soma, subtracao, multiplicacao, divisao
+from Matematica.Avancados import quadrado, cubo
+import os
 
 def calc():
     print('''
@@ -18,8 +19,8 @@ def escolha():
     op = input("Digite a operação que deseja realizar: ")
 
     if op in ['+', '-', '*', '/']:
-        x = float(input("Digite o primeiro número: "))
-        y = float(input("Digite o segundo número: "))
+        x = float(input("Primeiro número: "))
+        y = float(input("Segundo número: "))
         
         if op == '+':
             print(f"O resultado de {x} + {y} é: {soma.soma(x, y)}")
@@ -47,8 +48,9 @@ def escolha():
         print(f"O resultado de {x}³ é: {cubo.cubo(x)}")
     
     else:
+        limpar()
         print("Operação inválida.")
-
+        escolha()
 
     again()
 
@@ -59,11 +61,21 @@ Gostaria de fazer outra operação? [S/N]
 ''')
 
     if calc_dnv.upper() == 'S':
+        limpar()
         escolha()
+        
     elif calc_dnv.upper() == 'N':
+        limpar()
         print('Até mais!')
+        
     else:
         again()
+
+def limpar():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 
 
 
